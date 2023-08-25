@@ -12,6 +12,7 @@ import {
 import { toast } from 'react-toastify'
 import { AiFillDelete } from "react-icons/ai"
 import { db } from '../firebase'
+import { AiOutlineDoubleLeft, AiOutlineDoubleRight } from 'react-icons/ai'
 
 const PasswordGenerator = () => {
 
@@ -22,6 +23,7 @@ const PasswordGenerator = () => {
     { title: "numbers", state: false },
     { title: "symbols", state: false },
   ])
+  const [page, setPage] = useState(1)
   const [copied, setCopied] = useState(false)
   const [passwords, SetPasswords] = useState([])
   const { password, error, generatePassword } = usePasswordGenerator()
@@ -63,6 +65,16 @@ const PasswordGenerator = () => {
       console.log(err)
     })
   }
+  const selectPageHandle = (selectedPage) => {
+    console.log(selectedPage)
+    if (
+      selectedPage >= 1 &&
+      selectedPage <= Math.ceil(passwords.length / 2) &&
+      selectedPage !== page
+    ) {
+      setPage(selectedPage)
+    }
+  }
   return (
     <div className='content'>
       <div className="content-container">
@@ -91,16 +103,44 @@ const PasswordGenerator = () => {
         <StrengthChecker password={password} />
       </div>
       <div className="generated-passwords">
-        {passwords.map((data, index) => {
-          return (
-            <div className='password-item' key={data.id}>
-              <p>
-                {data.generatedPassword}
-              </p>
-              <button className='del-password' onClick={() => delPassword(data.id)}><AiFillDelete /></button>
+        <div className="password-component">
+          {passwords.slice(page * 5 - 5, page * 5).map((data, index) => {
+            return (
+              <div className='password-item' key={data.id}>
+                <p>
+                  {data.generatedPassword}
+                </p>
+                <button className='del-password' onClick={() => delPassword(data.id)}><AiFillDelete /></button>
+              </div>
+            )
+          })}
+        </div>
+        <div className="pagination-component">
+          {passwords.length > 0 && (
+            <div className='pagination'>
+              <span
+                className={page > 1 ? '' : 'page-disable'}
+                onClick={() => selectPageHandle(page - 1)}>
+                <AiOutlineDoubleLeft />
+              </span>
+              {[...Array(Math.ceil(passwords.length / 5))].map((_, i) => {
+                return (
+                  <span
+                    className={page === i + 1 ? 'page-selected' : ''}
+                    onClick={() => selectPageHandle(i + 1)}
+                    key={i}>
+                    {i + 1}
+                  </span>
+                )
+              })}
+              <span
+                className={page < passwords.length / 5 ? '' : 'page-disable'}
+                onClick={() => selectPageHandle(page + 1)}>
+                <AiOutlineDoubleRight />
+              </span>
             </div>
-          )
-        })}
+          )}
+        </div>
       </div>
     </div>
   )

@@ -105,6 +105,7 @@ form button {
   font-weight: bold;
   color: #0062ff;
 }
+
 /* CONTENT */
 .content {
   background-color: #f8fafc;
@@ -127,19 +128,60 @@ form button {
   margin-bottom: 20px;
 }
 .generated-passwords {
+  position: relative;
   width: 50%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
   padding: 2rem;
+  max-height: 600px;
 }
-.generated-passwords div {
+.pagination {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.pagination-component {
+  display: flex;
+  justify-content: space-between;
+}
+.pagination > span {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.page-selected {
+  background-color: #0062ff;
+  border-radius: 50%;
+  color: #ffffff;
+}
+.hero {
+  width: 500px;
+  height: 100%;
+  object-fit: contain;
+  border: 10px solid #686565;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
+  -ms-interpolation-mode: bicubic;
+}
+.page-disable {
+  opacity: 0;
+  pointer-events: none;
+}
+.generated-passwords .password-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
   background-color: #fff;
   box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.password-component {
+  display: contents;
 }
 .del-password {
   background-color: red;
@@ -208,7 +250,6 @@ form button {
 .strong {
   color: greenyellow;
   font-weight: bold;
-
 }
 .medium {
   color: #fb5607;
@@ -221,4 +262,44 @@ form button {
 .very-strong {
   color: green;
   font-weight: bold;
+}
+/* spinner */
+.loadingSpinnerContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #0052cc transparent #555 transparent;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.play {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+a {
+  text-decoration: none;
 }
