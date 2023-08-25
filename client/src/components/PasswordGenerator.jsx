@@ -1,7 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import usePasswordGenerator from '../hooks/usePasswordGenerator'
 import StrengthChecker from '../utils/StrengthChecker'
-
+import {
+  onSnapshot,
+  collection,
+  query,
+  orderBy,
+  doc,
+  deleteDoc,
+} from 'firebase/firestore'
+import { AiFillDelete } from "react-icons/ai"
+import { db } from '../firebase'
 
 const PasswordGenerator = () => {
 
@@ -13,7 +22,7 @@ const PasswordGenerator = () => {
     { title: "symbols", state: false },
   ])
   const [copied, setCopied] = useState(false)
-
+  const [passwords, SetPasswords] = useState([])
   const { password, error, generatePassword } = usePasswordGenerator()
 
   const handleCheckboxChange = (index) => {
@@ -30,6 +39,29 @@ const PasswordGenerator = () => {
     }, 1000)
   }
 
+  useEffect(() => {
+    const getPasswords = () => {
+      const colRef = collection(db, "passwords")
+      const q = query(colRef, orderBy("createdAt"))
+      try {
+        onSnapshot(q, (snap) => {
+          const savedPasswords = snap.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+          SetPasswords(savedPasswords)
+        })
+      } catch (error) {
+        console.log("ERROR FETCHING DATA")
+      }
+    }
+    getPasswords()
+  }, [])
+  const delPassword = (id) => {
+    const docRef = doc(db, "passwords", id)
+    deleteDoc(docRef).then(() => {
+      alert("PASSWORD DELETED")
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
   return (
     <div className='content'>
       <div className="content-container">
@@ -56,6 +88,18 @@ const PasswordGenerator = () => {
           })}
         </div>
         <StrengthChecker password={password} />
+      </div>
+      <div className="generated-passwords">
+        {passwords.map((data, index) => {
+          return (
+            <div className='password-item' key={data.id}>
+              <p>
+                {data.generatedPassword}
+              </p>
+              <button className='del-password' onClick={() => delPassword(data.id)}><AiFillDelete /></button>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

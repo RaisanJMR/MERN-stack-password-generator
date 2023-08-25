@@ -3,13 +3,12 @@ const asyncHandler = require('express-async-handler')
 const bcrypt = require('bcrypt')
 const User = require('../modal/userModal')
 
-
 // @desc register new user
 // @route POST
 // @access public
 const register = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body
-  if (!name || !email || !password) {
+  const { username, email, password } = req.body
+  if (!username || !email || !password) {
     res.status(400)
     throw new Error('Please add all fields')
   }
@@ -25,7 +24,7 @@ const register = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt)
 
   const user = await User.create({
-    name,
+    username,
     email,
     password: hashedPassword,
   })
@@ -33,7 +32,7 @@ const register = asyncHandler(async (req, res) => {
   if (user) {
     res.status(201).json({
       _id: user.id,
-      name: user.name,
+      username: user.username,
       email: user.email,
       token: generateToken(user._id),
     })
