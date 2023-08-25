@@ -1,4 +1,4 @@
-import Logo from "../assets/logo.svg"
+import Logo from "../assets/logo.png"
 import { Link } from "react-router-dom"
 const Home = () => {
     return (
@@ -16,9 +16,6 @@ const Home = () => {
                         </Link>
 
                     </div>
-                </div>
-                <div className="logo">
-                    <img src={Logo} alt="logo" />
                 </div>
             </div>
         </div>

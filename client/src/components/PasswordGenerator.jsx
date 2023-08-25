@@ -9,6 +9,7 @@ import {
   doc,
   deleteDoc,
 } from 'firebase/firestore'
+import { toast } from 'react-toastify'
 import { AiFillDelete } from "react-icons/ai"
 import { db } from '../firebase'
 
@@ -57,7 +58,7 @@ const PasswordGenerator = () => {
   const delPassword = (id) => {
     const docRef = doc(db, "passwords", id)
     deleteDoc(docRef).then(() => {
-      alert("PASSWORD DELETED")
+      toast.success("PASSWORD DELETED")
     }).catch((err) => {
       console.log(err)
     })

@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from 'react'
-import Logo from "../assets/logo.svg"
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { register, reset } from '../features/auth/authSlice'
-
+import { toast } from 'react-toastify'
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -24,7 +23,7 @@ const Register = () => {
 
     useEffect(() => {
         if (isError) {
-            alert(message)
+            toast.error("error occoured! try again")
         }
         // Redirect when logged in
         if (isSuccess || user) {
@@ -43,7 +42,7 @@ const Register = () => {
     const onSubmit = (e) => {
         e.preventDefault()
         if (password !== password2) {
-            alert('Passwords do not match')
+            toast.error('Passwords do not match')
         } else {
             const userData = {
                 username,
@@ -58,7 +57,7 @@ const Register = () => {
         <div className='home'>
             <div className="container">
                 <form onSubmit={onSubmit}>
-                    <h1>Register</h1>
+                    <h1>REGISTER</h1>
                     <p>join us to generate passwords</p>
 
                     <input className="input" type="text" id='username'
@@ -72,7 +71,7 @@ const Register = () => {
                     <input className="input" type="password" id='password'
                         name='password' value={password}
                         onChange={onChange} placeholder="password" />
-                    <input className="input" type="password2" id='password2'
+                    <input className="input" type="password" id='password2'
                         name='password2' value={password2}
                         onChange={onChange} placeholder="password" />
                     <button>Register</button>
@@ -80,9 +79,7 @@ const Register = () => {
                         <Link className="link" to={"/login"}>login</Link>
                     </small>
                 </form>
-                <div className="logo">
-                    <img src={Logo} alt="logo" />
-                </div>
+              
             </div>
         </div>
     )

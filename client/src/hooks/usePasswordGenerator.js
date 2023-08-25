@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { db } from '../firebase'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
+import { toast } from 'react-toastify'
 
 const usePasswordGenerator = () => {
   const [password, setPassword] = useState('X#i%V7f63loj')
@@ -51,7 +52,7 @@ const usePasswordGenerator = () => {
         createdAt: serverTimestamp(),
       })
         .then(() => {
-          alert('ADDED TO DB')
+         toast.success('ADDED TO DATABASE')
         })
         .catch((err) => {
           console.log(err)

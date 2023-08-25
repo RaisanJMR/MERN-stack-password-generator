@@ -24,7 +24,7 @@ const StrengthChecker = ({ password }) => {
     )
   }
   return (
-    <div>StrengthChecker {passwordStrength}</div>
+    <div className={`${passwordStrength === "medium" && "medium"} ${passwordStrength === "strong" && "strong"} ${passwordStrength === "poor" && "poor"} ${passwordStrength === "very strong" && "very-strong"}`}>password strength: {passwordStrength}</div>
   )
 }
 

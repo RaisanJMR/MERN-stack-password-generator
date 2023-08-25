@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
-import Logo from "../assets/logo.svg"
 import { useState, useEffect } from 'react'
+import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { login, reset } from '../features/auth/authSlice'
@@ -35,7 +35,7 @@ const Login = () => {
 
     useEffect(() => {
         if (isError) {
-            alert(message)
+            toast.error("Error occoured!try again")
         }
         // Redirect when logged in
         if (isSuccess || user) {
@@ -61,9 +61,7 @@ const Login = () => {
                         <Link className="link" to={"/register"}>register</Link>
                     </small>
                 </form>
-                <div className="logo">
-                    <img src={Logo} alt="logo" />
-                </div>
+
             </div>
         </div>
     )
