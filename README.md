@@ -11,8 +11,8 @@ This is a MERN stack powered password generator using REAL TIME database
  - 🔥🔥Firebase `(real time database to store generated passwords)`
 
 # Features
- - register user with credentials
- - login user with credentials
+ - bckend api to register a user with credentials
+ - backend api to login a user with credentials
  - user password encryption `(using bcrypt)` 
  - generate password `(real time update in UI & Database)` 
  - delete password `(real time update in UI and Database)` 
@@ -36,9 +36,11 @@ This is a MERN stack powered password generator using REAL TIME database
  ```
  npm run dev
  ```
- 
+ # Deployment
+  - deployed this on [render.com](https://dashboard.render.com) as a full stack application
+  - deployed link 👉 [https://pass-gen-fqeq.onrender.com/](https://pass-gen-fqeq.onrender.com)
 
-
- 
+# API deployment link
+ - view API docs here 👉 [https://documenter.getpostman.com/view/8886902/2s9Y5WyPrx](https://documenter.getpostman.com/view/8886902/2s9Y5WyPrx) 
 
 
