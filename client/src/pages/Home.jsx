@@ -18,7 +18,7 @@ const Home = () => {
                         <Link to={"/register"}>
                             <button>signup</button>
                         </Link>
-                        <Link to={"https://youtu.be/BI1o2H9z9fo?si=exBkrwe5onpdMZBB"} target="_blank">
+                        <Link to={"https://youtu.be/8Sxo2Ii7Ngg"} target="_blank">
                             <button className="play">
                                 <span>Demo</span>
                                 <FaPlay />

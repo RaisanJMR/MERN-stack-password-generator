@@ -6,10 +6,12 @@ This is a MERN stack powered password generator using REAL TIME database
 
  - ReactJS `(front end)`
  - NodeJS `(back end)`
+ - ExpressJS `(backend framework)`
  - MongoDB `(Database for user authentication nd authorization)`
  - Rect redux toolkit `(global state management)`
  - 🔥🔥Firebase `(real time database to store generated passwords)`
-
+# Video Explanation
+ - [click here](https://youtu.be/8Sxo2Ii7Ngg) for video explanation
 # Features
  - bckend api to register a user with credentials
  - backend api to login a user with credentials
@@ -27,7 +29,7 @@ This is a MERN stack powered password generator using REAL TIME database
  npm install
  ```
  - step 2
-    - navigate to /client
+    - navigate to /client folder
  ```
  npm install
  ```
@@ -36,6 +38,12 @@ This is a MERN stack powered password generator using REAL TIME database
  ```
  npm run dev
  ```
+ # Demo user for login
+
+  `name: john`
+
+  `password: 123456`
+
  # Deployment
   - deployed this on [render.com](https://dashboard.render.com) as a full stack application
   - deployed link 👉 [https://pass-gen-fqeq.onrender.com/](https://pass-gen-fqeq.onrender.com)

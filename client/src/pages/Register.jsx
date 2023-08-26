@@ -78,7 +78,7 @@ const Register = () => {
                         onChange={onChange} placeholder="password" />
                     <input className="input" type="password" id='password2'
                         name='password2' value={password2}
-                        onChange={onChange} placeholder="password" />
+                        onChange={onChange} placeholder=" re enter password" />
                     <button>Register</button>
                     <small>already have account?
                         <Link className="link" to={"/login"}>login</Link>
