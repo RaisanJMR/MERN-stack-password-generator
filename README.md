@@ -40,7 +40,7 @@ This is a MERN stack powered password generator using REAL TIME database
  ```
  # Demo user for login
 
-  `name: john`
+  `email: john@gmail.com`
 
   `password: 123456`
 
